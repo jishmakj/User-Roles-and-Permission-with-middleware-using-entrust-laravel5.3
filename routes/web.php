@@ -14,12 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout'); 
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/logout', 'AuthController@logout');
 
-//Route::auth();
+//Route::get('/home', 'HomeController@index');
+
+// Route::auth();
+
 
 Route::group(['middleware' => ['auth']], function() {
 
@@ -28,6 +31,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::resource('users','UserController');
 
 	Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+
 	Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create','middleware' => ['permission:role-create']]);
 	Route::post('roles/create',['as'=>'roles.store','uses'=>'RoleController@store','middleware' => ['permission:role-create']]);
 	Route::get('roles/{id}',['as'=>'roles.show','uses'=>'RoleController@show']);
@@ -36,6 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy','middleware' => ['permission:role-delete']]);
 
 	Route::get('itemCRUD2',['as'=>'itemCRUD2.index','uses'=>'ItemCRUD2Controller@index','middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
+	
 	Route::get('itemCRUD2/create',['as'=>'itemCRUD2.create','uses'=>'ItemCRUD2Controller@create','middleware' => ['permission:item-create']]);
 	Route::post('itemCRUD2/create',['as'=>'itemCRUD2.store','uses'=>'ItemCRUD2Controller@store','middleware' => ['permission:item-create']]);
 	Route::get('itemCRUD2/{id}',['as'=>'itemCRUD2.show','uses'=>'ItemCRUD2Controller@show']);

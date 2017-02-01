@@ -82,9 +82,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-       $roles = Role::pluck('display_name','id');
+        $roles = Role::pluck('display_name','id');
        // return  $roles = Role::all();
-       $userRole = $user->roles->pluck('id','id')->toArray();
+        $userRole = $user->roles->pluck('id','id')->toArray();
         // return  $userRole = $user->roles->toArray();
 
         //return $userRole=User::with(['roles'])->get();

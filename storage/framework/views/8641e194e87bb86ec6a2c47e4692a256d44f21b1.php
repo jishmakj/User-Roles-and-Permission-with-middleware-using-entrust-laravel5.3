@@ -49,7 +49,7 @@
                 <strong>Permission:</strong>
                 <br/>
                 <?php $__currentLoopData = $permission; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                	<label><?php echo e(Form::checkbox('permission[]', $value->id, false, array('class' => 'name'))); ?>
+                	<label><?php echo Form::checkbox('permission[]', $value->id, false, array('class' => 'name')); ?>
 
                 	<?php echo e($value->display_name); ?></label>
                 	<br/>
